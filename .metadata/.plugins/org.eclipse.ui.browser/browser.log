@@ -1,0 +1,7 @@
+
+11월 12, 2022 22:33:51.823 NEW SESSION
+11월 12, 2022 22:33:51.823 [4160:14244:1112/223351.821:ERROR:cert_issuer_source_aia.cc(34)] Error parsing cert retrieved from AIA (as DER):
+11월 12, 2022 22:33:51.823 ERROR: Couldn't read tbsCertificate as SEQUENCE
+11월 12, 2022 22:33:51.824 ERROR: Failed parsing Certificate
+11월 12, 2022 22:33:51.824 
+11월 12, 2022 22:33:53.202 [4160:22388:1112/223353.202:ERROR:device_event_log_impl.cc(215)] [22:33:53.202] USB: usb_device_handle_win.cc:1048 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)

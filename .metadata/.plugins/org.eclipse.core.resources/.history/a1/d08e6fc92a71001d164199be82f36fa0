@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Recipe Cafe</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link
+	rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="cafe-body-skin">
+		<div id="cafe-body">
+			<div id="cafe-gnb">
+				<!-- 로그인/회원가입 nav -->
+			</div>
+			<div id="banner">
+				<div id="front-img" style="text-align: center">
+					<img src="images/banner.png" alt="배너" />
+				</div>
+			</div>
+			<div id="content-area">
+				<div id="group-area">
+					<div class="user-info" id="user-info">
+						<!-- user 아이디 / 비회원이라면 로그인 필요 문구 -->
+					</div>
+				</div>
+				<div id="main-area">
+					<div class="list-tit">
+						<h3>전체글보기</h3>
+					</div>
+					<!-- <div class="list-box">
+						 <table class="board-box">
+							<caption>
+								<span class="게시글 목록"></span>
+							</caption>
+							<colgroup>
+								<col>
+								<col width="120">
+								<col width="100">
+								<col width="80">
+							</colgroup>
+							<tbody>
+								<tr>
+									<td class="td_category">
+										공지
+									</td>
+									<td class="td_article">
+										<div class="board-list">
+											글 리스트
+										</div>
+									</td>
+									<td class="td_name">
+										<div class="user_id_area">
+											유저 아이디
+										</div>
+									</td>
+									<td class="td_date">
+										날짜
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div> -->
+					<div clas="article-board m-tcol-c" id="uppderArticleList">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+package manager;
+
+import java.util.List;
+
+import dao.BoardDao;
+
+public class BoardManager {
+private BoardManager() {}
+	
+	private static class InnerInstanceClazz {
+		private static final BoardManager instance = new BoardManager();
+	}
+	public static BoardManager getInstance() {
+		return InnerInstanceClazz.instance;
+	}
+	
+	public boolean register(String title, String content, String user_id) {
+		BoardDao da = new BoardDao();
+		return da.register(title, content, user_id);
+	}
+	
+	public List<BoardDao> getBoards(String title, String author) {
+		BoardDao da = new BoardDao();
+		return da.getBoards(title, author);
+	}
+}
