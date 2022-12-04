@@ -60,27 +60,39 @@
 	<div style="display: flex">
 
 		<div style="width: 30%;">
-			<div>
-				<center>
-					<hr
-						style="width: 80%; height: 5px; border: none; background-color: yellow;">
-				</center>
-				<hr
-					style="width: 100%; height: 10px; border: none; background-color: white;">
-				<hr
-					style="width: 100%; height: 10px; border: none; background-color: white;">
-				<h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(아이디)님</h2>
-
-				<hr
-					style="width: 100%; height: 10px; border: none; background-color: white;">
-				<hr
-					style="width: 100%; height: 10px; border: none; background-color: white;">
-				<center>
-					<hr
-						style="width: 80%; height: 5px; border: none; background-color: yellow;">
-				</center>
-			</div>
-		</div>
+         <div>
+            <center>
+               <hr
+                  style="width: 80%; height: 5px; border: none; background-color: yellow;">
+            </center>
+            <hr
+               style="width: 100%; height: 10px; border: none; background-color: white;">
+            <hr
+               style="width: 100%; height: 10px; border: none; background-color: white;">
+            <%
+            if (user == null) {
+            %>
+            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인이
+               필요한</h2>
+            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서비스입니다.</h2>
+            <%
+            }
+            else  {
+            %>
+            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=user.getUsername() %>님</h2>
+            <%
+            }
+            %>
+            <hr
+               style="width: 100%; height: 10px; border: none; background-color: white;">
+            <hr
+               style="width: 100%; height: 10px; border: none; background-color: white;">
+            <center>
+               <hr
+                  style="width: 80%; height: 5px; border: none; background-color: yellow;">
+            </center>
+         </div>
+      </div>
 		<div style="width: 70%;">
 			<span style="font-size: 1.5em;">카페 글쓰기</span>
 

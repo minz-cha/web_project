@@ -26,7 +26,10 @@
 <body>
 	<%	
 	request.setCharacterEncoding("UTF-8");
-	model.UserBean user = (model.UserBean) session.getAttribute("user"); 
+	model.UserBean user = (model.UserBean) session.getAttribute("user");
+	if (user != null) {
+		System.out.println("이름 : " + user.getUsername());
+	}
 	BoardBean board = null;
 	if(user == null) { %>
 		<script>alert("로그인이 필요합니다!");</script>
@@ -53,7 +56,7 @@
 	
    <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid" style="padding: 0.4erm">
-         <a class="navbar-brand" href="#">Cafe</a>
+         <a class="navbar-brand" href="Main.jsp">Cafe</a>
          <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false"
