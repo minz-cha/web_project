@@ -1,6 +1,7 @@
 <%@page import="model.BoardBean"%>
 <%@page import="manager.BoardManager"%>
 <%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,15 +17,29 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel"stylesheet" href="resources/register/css" type="text/css"></link>
-</head>
-<script>
+	crossorigin="anonymous">
 	
 </script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="resources/register/css" type="text/css"></link>
+
+</head>
+
 <body>
+	<script>
+		function onSearch() {
+			var form = document.forms.search;
+			var option = form.searchField.value
+			var value = form.inputText.value
+
+			if (value == "") {
+				alert("비어있습니다.");
+			} else
+				location.href = "Main.jsp?" + option + "=" + value;
+		}
+	</script>
+
 	<%
 	request.setCharacterEncoding("UTF-8");
 	model.UserBean user = (model.UserBean) session.getAttribute("user");
@@ -136,19 +151,19 @@
 							<th scope="row" style="color: red">공지</th>
 							<td><a href='project/notice3.jsp' class="link-danger">공지3</a></td>
 							<td>관리자</td>
-							<td>2022-12-01 17:01:59</td>
+							<td>2022-12-01</td>
 						</tr>
 						<tr>
 							<th scope="row" style="color: red">공지</th>
 							<td><a href='project/notice2.jsp' class="link-danger">공지2</a></td>
 							<td>관리자</td>
-							<td>2022-12-01 12:02:40</td>
+							<td>2022-12-01</td>
 						</tr>
 						<tr>
 							<th scope="row" style="color: red">공지</th>
 							<td><a href='project/notice1.jsp' class="link-danger">공지1</a></td>
 							<td>관리자</td>
-							<td>2022-12-01 01:37:01</td>
+							<td>2022-12-01</td>
 						</tr>
 
 						<%
@@ -160,7 +175,7 @@
 							<th scope="row"><%=k%></th>
 							<td><a href="board.jsp?idx=<%=board.getBoardID()%>"><%=board.getBoardTitle()%></a></td>
 							<td><%=board.getUserID()%></td>
-							<td><%=board.getBoardTime()%></td>
+							<td><%=board.getBoardSimpleTime()%></td>
 						</tr>
 
 						<%
@@ -172,26 +187,47 @@
 				<hr
 					style="width: 80%; height: 5px; border: none; background-color: yellow;">
 
-				<form>
-					<div class="form-group row">
-						<div class="col">
-							<select name="search">
-								<option value="title" selected>제목</option>
-								<option value="user">글쓴이</option>
-							</select>
-						</div>
-						<div class="col">
-							<input class="form-control" type="text" placeholder="검색어를 입력하세요"
-								aria-label="default input example" name="search1">
-						</div>
-						<div class="col">
-							<button type="button" class="btn btn-outline-warning"
-								onclick="location.href='Main.jsp'">검색</button>
-						</div>
+				<div class="container">
+					<div class="row">
+						<form method="post" name="search" action="Main.jsp">
+							<table class="search-box">
+								<tr>
+									<td><select class="form-control" name="searchField">
+											<option value="title" selected>제목</option>
+											<option value="author">글쓴이</option>
+									</select></td>
+									<td><input type="text" class="form-control" id="inputText"
+										name="inputText" placeholder="검색어 입력" name="searchText"
+										maxlength="100"></td>
+									<td><input type="button" value="검색" onclick="onSearch()"
+										class="btn btn-outline-warning"></td>
+								</tr>
+							</table>
+						</form>
+						<!-- <form>
+							<div class="form-group row">
+								<div class="col">
+									<select name="search">
+										<option value="title" selected>제목</option>
+										<option value="user">글쓴이</option>
+									</select>
+								</div>
+								<div class="col">
+									<input class="form-control" type="text"
+										placeholder="검색어를 입력하세요" aria-label="default input example"
+										name="search1">
+								</div>
+								<div class="col">
+									<button type="button" class="btn btn-outline-warning"
+										onclick="location.href='Main.jsp'">검색</button>
+								</div>
+							</div>
+						</form> -->
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

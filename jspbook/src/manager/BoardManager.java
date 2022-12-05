@@ -29,4 +29,14 @@ private BoardManager() {}
 		BoardDao da = new BoardDao();
 		return da.getBoard(boardIdx);
 	}
+	
+	public boolean update(int idx, String title, String content) {
+		BoardDao da = new BoardDao();
+		return da.update(idx, title, content);
+	}
+	
+	public boolean remove(int idx) {
+		BoardDao da = new BoardDao();
+		return da.remove(idx);
+	}
 }

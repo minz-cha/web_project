@@ -27,20 +27,35 @@ private static final long serialVersionUID = 1L;
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		HttpSession session = request.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
 		String user_id = user.getUserid();
-		
+				
 		// 로그인 여부(세션)
-		boolean check = BoardManager.getInstance().register(title, content, user_id);
-		PrintWriter out = response.getWriter();	// html처럼 만듬
-		if(check) {
-			out.println("<script>alert(\"게시글 작성 완료!\");</script>");
-			out.println("<script>location.href=\"project/Main.jsp;\"</script>");
+		if (idx == -1) {
+			boolean check = BoardManager.getInstance().register(title, content, user_id);
+			PrintWriter out = response.getWriter();	// html처럼 만듬
+			if(check) {
+				out.println("<script>alert(\"게시글 작성 완료!\");</script>");
+				out.println("<script>location.href=\"project/Main.jsp;\"</script>");
+			}
+			else {
+				out.println("<script>alert(\"아이디 혹은 비밀번호를 확인하세요\");</script>");
+				out.println("<script>location.href=\"project/Main.jsp\";</script>");
+			}
 		}
 		else {
-			out.println("<script>alert(\"아이디 혹은 비밀번호를 확인하세요\");</script>");
-			out.println("<script>location.href=\"project/Main.jsp\";</script>");
+			boolean check = BoardManager.getInstance().update(idx, title, content);
+			PrintWriter out = response.getWriter();	// html처럼 만듬
+			if(check) {
+				out.println("<script>alert(\"게시글 수정 완료!\");</script>");
+				out.println("<script>location.href=\"project/Main.jsp;\"</script>");
+			}
+			else {
+				out.println("<script>alert(\"아이디 혹은 비밀번호를 확인하세요\");</script>");
+				out.println("<script>location.href=\"project/write.jsp?idx="+idx+"\";</script>");
+			}
 		}
 		
 	}

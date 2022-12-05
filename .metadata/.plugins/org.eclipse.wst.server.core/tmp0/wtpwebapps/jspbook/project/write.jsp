@@ -16,17 +16,27 @@
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel"stylesheet" href="resources/register/css" type="text/css"></link>
+<link rel="stylesheet" href="resources/register/css" type="text/css"></link>
 </head>
 <script>
 	
 </script>
 <body>
-	<%	
+	<%
 	request.setCharacterEncoding("UTF-8");
-	model.UserBean user = (model.UserBean) session.getAttribute("user"); 
-	if(user != null) { 
+	model.UserBean user = (model.UserBean) session.getAttribute("user");
+	if (user != null) {
 		System.out.println("이름 : " + user.getUsername());
+	}
+	String idx = request.getParameter("idx");
+	int id = -1;
+	String title = "";
+	String content = "";
+	if (idx != null) {
+		id = Integer.parseInt(idx);
+		model.BoardBean board = manager.BoardManager.getInstance().getBoard(id);
+		title = board.getBoardTitle();
+		content = board.getBoardContent();
 	}
 	%>
 	<nav class="navbar navbar-expand-lg bg-light">
@@ -40,15 +50,21 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<% if (user == null) { %>
+					<%
+					if (user == null) {
+					%>
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="loginForm.jsp">로그인 </a></li>
 					<li class="nav-item"><a class="nav-link" href="signup.jsp">|
 							회원가입</a></li>
-					<% } else { %>
+					<%
+					} else {
+					%>
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/jspbook/LogOutServlet">로그아웃</a></li>
-					<% } %>
+					<%
+					}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -60,43 +76,45 @@
 	<div style="display: flex">
 
 		<div style="width: 30%;">
-         <div>
-            <center>
-               <hr
-                  style="width: 80%; height: 5px; border: none; background-color: yellow;">
-            </center>
-            <hr
-               style="width: 100%; height: 10px; border: none; background-color: white;">
-            <hr
-               style="width: 100%; height: 10px; border: none; background-color: white;">
-            <%
-            if (user == null) {
-            %>
-            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인이
-               필요한</h2>
-            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서비스입니다.</h2>
-            <%
-            }
-            else  {
-            %>
-            <h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=user.getUsername() %>님</h2>
-            <%
-            }
-            %>
-            <hr
-               style="width: 100%; height: 10px; border: none; background-color: white;">
-            <hr
-               style="width: 100%; height: 10px; border: none; background-color: white;">
-            <center>
-               <hr
-                  style="width: 80%; height: 5px; border: none; background-color: yellow;">
-            </center>
-         </div>
-      </div>
+			<div>
+				<center>
+					<hr
+						style="width: 80%; height: 5px; border: none; background-color: yellow;">
+				</center>
+				<hr
+					style="width: 100%; height: 10px; border: none; background-color: white;">
+				<hr
+					style="width: 100%; height: 10px; border: none; background-color: white;">
+				<%
+				if (user == null) {
+				%>
+				<h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;로그인이
+					필요한</h2>
+				<h2 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서비스입니다.</h2>
+				<%
+				} else {
+				%>
+				<h2 style="">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=user.getUsername()%>님
+				</h2>
+				<%
+				}
+				%>
+				<hr
+					style="width: 100%; height: 10px; border: none; background-color: white;">
+				<hr
+					style="width: 100%; height: 10px; border: none; background-color: white;">
+				<center>
+					<hr
+						style="width: 80%; height: 5px; border: none; background-color: yellow;">
+				</center>
+			</div>
+		</div>
 		<div style="width: 70%;">
 			<span style="font-size: 1.5em;">카페 글쓰기</span>
 
 			<form action="/jspbook/PostServlet" name="RegisterBoard">
+				<input type="hidden" name="idx" value=<%=id %>> 
 				<button type="submit" class="btn btn-outline-dark"
 					style="margin-left: 650px">등록</button>
 				<hr
@@ -104,12 +122,12 @@
 				<div style="width: 80%">
 					<div class="form-floating">
 						<textarea class="form-control" placeholder="Leave a comment here"
-							id="floatingTextarea2" name="title" style="height: 100px"></textarea>
+							id="floatingTextarea2" name="title" style="height: 100px"><%=title%></textarea>
 						<label for="floatingTextarea2">제목</label>
 					</div>
 					<div class="form-floating">
 						<textarea class="form-control" placeholder="Leave a comment here"
-							id="floatingTextarea2" name="content" style="height: 500px"></textarea>
+							id="floatingTextarea2" name="content" style="height: 500px"><%=content %></textarea>
 						<label for="floatingTextarea2">내용</label>
 					</div>
 				</div>

@@ -20,6 +20,8 @@ public class BoardBean {
 	public void setBoardContent(String board_content) { this.board_content = board_content; }
 
 	public String getBoardTime() { return board_time; }
+	
+	public String getBoardSimpleTime() { return board_time.split(" ")[0]; }
 
 	public void setBoardTime(String board_time) { this.board_time = board_time; }
 

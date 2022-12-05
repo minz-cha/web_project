@@ -67,15 +67,16 @@ public class BoardDao {
 		
 		try {
 			if(title != "")
-				sql += " where title = ?;";
+				sql += " where title Like  ?;";
 			else if(author != "")
-				sql += " where author = ?;";
+				sql += " where user_id Like ?;";
 			else sql += ";";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			if (title != "") pstmt.setString(1, title);
-			else if (author != "") pstmt.setString(2, author);
+			if (title != "") pstmt.setString(1, "%"+title+"%");
+			
+			else if (author != "") pstmt.setString(1, "%"+author+"%");
 			
 			rs = pstmt.executeQuery();
 			
@@ -124,5 +125,39 @@ public class BoardDao {
 			disconnect();
 		}	
 		return board;
+	}
+	
+	public boolean update(int idx, String title, String content) {
+		connect();
+		String sql = "Update board set title = ?, content = ? where idx = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, idx);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			disconnect();
+		}
+		return true;
+	}
+	
+	public boolean remove(int boardIdx) {
+		connect();
+		String SQL = "Delete from board where idx= ?";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardIdx);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			disconnect();
+		}
+		return true; //DB 오류 
 	}
 }

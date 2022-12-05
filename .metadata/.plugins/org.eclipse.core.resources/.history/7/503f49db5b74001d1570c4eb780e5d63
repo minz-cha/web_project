@@ -1,0 +1,8 @@
+<servlet>
+  <servlet-name>PostRemoveServlet</servlet-name>
+  <servlet-class>controller.PostRemoveServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>PostRemoveServlet</servlet-name>
+  <url-pattern>/remove/*</url-pattern>
+</servlet-mapping>
